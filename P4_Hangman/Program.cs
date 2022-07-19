@@ -8,36 +8,35 @@ namespace MyApp // Note: actual namespace depends on the project name.
         {
             Console.Write("** Hangman Game **\n\n");
 
-            string word = "test";
-            List<string> bankOfWords = new List<string>(); //Creating and initializing the list name bankOfWords
+            string word = "";
+            List<string> bankOfWords = new List<string>(); //Creating and initializing the list named bankOfWords
             Console.Write($"Create your own back of words. Enter 10 words:\n");
 
-            for (int wordCount = 1; wordCount <= 5; wordCount++) //Adding words to the bankOfWords list
+            for (int wordCount = 1; wordCount <= 3; wordCount++) //Adding words to the bankOfWords list
             {
                 Console.Write(@$"{wordCount})");
                 word = Console.ReadLine();
 
-                //TODO: Fix the loop of repeated word verification 
-                /*
-                for (int i = 1; i <= wordCount; i++) //Verify if the word already exist in the list
+                if (String.IsNullOrEmpty(word) || String.IsNullOrWhiteSpace(word)) //Add a word if not empty, null, or spaces
                 {
-                    if (word == bankOfWords[wordCount])
+                    Console.WriteLine("Null and spaces are invalidy entries. Please, try again.");
+                    Console.Write("Enter a valid word: ");
+                    word = Console.ReadLine();
+                }
+                         
+                foreach (string existentWord in bankOfWords) //Verify if the word already exist in the list
+                {
+                    if (word == existentWord)
                     {
-                        Console.WriteLine("This word already exist. Please, enter a new one here: ");
+                        Console.WriteLine("This word already exist in your list.");
+                        Console.Write("Enter a new word: ");
                         word = Console.ReadLine();
                     }
                 }
-                */
-                if (String.IsNullOrEmpty(word) || String.IsNullOrWhiteSpace(word)) //Add a word if not empty, null, or spaces
-                {
-                    Console.WriteLine("Invalidy entry. PLease, try again.");
-                }
-                else
-                {
-                    bankOfWords.Add(word.ToLower()); //Adding the word converted to lower case to the bankOfWords list
-                }
+                
+                bankOfWords.Add(word.ToLower()); //Adding a word converted to lower case to the list
 
-            }
+             }
 
             Console.WriteLine("\nConfirm your words:");
             foreach (string item in bankOfWords) //Printing the bankOfWords items for the player verify the words inserted
