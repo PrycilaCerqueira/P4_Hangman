@@ -25,7 +25,7 @@ namespace P4_Hangman // Note: actual namespace depends on the project name.
                     word = Console.ReadLine();
                 }
 
-                if (bankOfWords.Contains(word))
+                if (bankOfWords.Contains(word)) //Verify if word is repeated
                 {
                     Console.WriteLine("This word already exist in your list.");
                     Console.Write("Enter a new word: ");
@@ -58,7 +58,11 @@ namespace P4_Hangman // Note: actual namespace depends on the project name.
             }
 
             //Block 2 - Pick a random word from the list
-            
+            Random randomWord = new Random();
+            int wordNumber = randomWord.Next(bankOfWords.Count);
+            string getWord = bankOfWords[wordNumber];
+
+            Console.WriteLine(getWord);
 
                 
 
