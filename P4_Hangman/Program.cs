@@ -8,6 +8,7 @@ namespace P4_Hangman // Note: actual namespace depends on the project name.
         {
             Console.Write("** Hangman Game **\n\n");
 
+            //Block 1 - List of words creation
             string word = "";
             List<string> bankOfWords = new List<string>(); //Creating and initializing the list named bankOfWords
             Console.Write($"Create your own back of words. Enter 10 words:\n");
@@ -23,17 +24,14 @@ namespace P4_Hangman // Note: actual namespace depends on the project name.
                     Console.Write("Enter a valid word: ");
                     word = Console.ReadLine();
                 }
-                         
-                foreach (string existentWord in bankOfWords) //Verify if the word already exist in the list
+
+                if (bankOfWords.Contains(word))
                 {
-                    if (word == existentWord)
-                    {
-                        Console.WriteLine("This word already exist in your list.");
-                        Console.Write("Enter a new word: ");
-                        word = Console.ReadLine();
-                    }
+                    Console.WriteLine("This word already exist in your list.");
+                    Console.Write("Enter a new word: ");
+                    word = Console.ReadLine();
                 }
-                
+
                 bankOfWords.Add(word.ToLower()); //Adding a word converted to lower case to the list
 
              }
@@ -59,6 +57,8 @@ namespace P4_Hangman // Note: actual namespace depends on the project name.
                 Environment.Exit(0); //Exits the console, forcing the game to end 
             }
 
+            //Block 2 - Pick a random word from the list
+            
 
                 
 
