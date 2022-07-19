@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace MyApp // Note: actual namespace depends on the project name.
+namespace P4_Hangman // Note: actual namespace depends on the project name.
 {
-    internal class P4_Hangman
+    internal class Program
     {
         static void Main(string[] args)
         {
@@ -17,7 +17,7 @@ namespace MyApp // Note: actual namespace depends on the project name.
                 Console.Write(@$"{wordCount})");
                 word = Console.ReadLine();
 
-                if (String.IsNullOrEmpty(word) || String.IsNullOrWhiteSpace(word)) //Add a word if not empty, null, or spaces
+                if (String.IsNullOrEmpty(word) || String.IsNullOrWhiteSpace(word)) //Verify if word is empty, null, or spaces
                 {
                     Console.WriteLine("Null and spaces are invalidy entries. Please, try again.");
                     Console.Write("Enter a valid word: ");
@@ -38,13 +38,29 @@ namespace MyApp // Note: actual namespace depends on the project name.
 
              }
 
-            Console.WriteLine("\nConfirm your words:");
+            Console.WriteLine("\nHere are your saved words:");
             foreach (string item in bankOfWords) //Printing the bankOfWords items for the player verify the words inserted
             {
                 Console.WriteLine(item);
             }
 
-            //TODO: Add a IF structure for the user confirm wether the list is valid or not.
+            string confirmation = "";
+            Console.Write("Are you happy with your list? (Yes/No) ");
+            confirmation = Console.ReadLine(); 
+            
+            if (confirmation.ToLower() != "yes" && confirmation.ToLower() != "no") //Confirming if the player entered a valid confirmation word
+            {
+                Console.Write("This is an invalid entry. Choose Yes or No to proceed: ");
+                confirmation = Console.ReadLine();
+            }
+            if (confirmation.ToLower() == "no") //Confirming if the player would like to proceed in the game
+            {
+                Console.Write("Sorry to hear that! See you next time.");
+                Environment.Exit(0); //Exits the console, forcing the game to end 
+            }
+
+
+                
 
 
             
