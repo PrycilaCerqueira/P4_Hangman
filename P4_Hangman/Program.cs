@@ -8,7 +8,7 @@ namespace P4_Hangman // Note: actual namespace depends on the project name.
         {
             Console.Write("** Hangman Game **\n\n");
 
-            //Block 1 - List of words creation
+            //BLOCK 1 - List of words creation
             string word = "";
             List<string> bankOfWords = new List<string>(); //Creating and initializing the list named bankOfWords
             Console.Write($"Create your own back of words. Enter 10 words:\n");
@@ -18,6 +18,7 @@ namespace P4_Hangman // Note: actual namespace depends on the project name.
                 Console.Write(@$"{wordCount})");
                 word = Console.ReadLine();
 
+                //TODO: How to check for every new entry - Maybe DO/WHILE
                 if (String.IsNullOrEmpty(word) || String.IsNullOrWhiteSpace(word)) //Verify if word is empty, null, or spaces
                 {
                     Console.WriteLine("Null and spaces are invalidy entries. Please, try again.");
@@ -25,6 +26,7 @@ namespace P4_Hangman // Note: actual namespace depends on the project name.
                     word = Console.ReadLine();
                 }
 
+                //TODO: How to check for every new entry - Maybe DO/WHILE
                 if (bankOfWords.Contains(word)) //Verify if word is repeated
                 {
                     Console.WriteLine("This word already exist in your list.");
@@ -43,7 +45,7 @@ namespace P4_Hangman // Note: actual namespace depends on the project name.
             }
 
             string confirmation = "";
-            Console.Write("Are you happy with your list? (Yes/No) ");
+            Console.Write("\nAre you happy with your list? (Yes/No) ");
             confirmation = Console.ReadLine(); 
             
             if (confirmation.ToLower() != "yes" && confirmation.ToLower() != "no") //Confirming if the player entered a valid confirmation word
@@ -57,17 +59,18 @@ namespace P4_Hangman // Note: actual namespace depends on the project name.
                 Environment.Exit(0); //Exits the console, forcing the game to end 
             }
 
-            //Block 2 - Pick a random word from the list
+            //BLOCK 2 - Pick a random word from the list
             Random randomWord = new Random();
             int wordNumber = randomWord.Next(bankOfWords.Count);
             string getWord = bankOfWords[wordNumber];
 
             Console.WriteLine(getWord);
 
-                
+            //BLOCK 3 - Discover if a string is part of the picked word
+            //TODO: Try out String.IndexOf( ) and/or String.Contains( )
 
 
-            
+
         }
     }
 }
