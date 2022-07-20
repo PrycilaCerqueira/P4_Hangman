@@ -50,7 +50,7 @@ namespace P4_Hangman // Note: actual namespace depends on the project name.
             Console.Write("\nAre you happy with your list? (Yes/No) ");
             confirmation = Console.ReadLine(); 
             
-            if (confirmation.ToLower() != "yes" && confirmation.ToLower() != "no") //Confirms if the player entered a valid confirmation word
+            while (confirmation.ToLower() != "yes" && confirmation.ToLower() != "no") //Confirms if the player entered a valid confirmation word
             {
                 Console.Write("This is an invalid entry. Choose Yes or No to proceed: ");
                 confirmation = Console.ReadLine();
