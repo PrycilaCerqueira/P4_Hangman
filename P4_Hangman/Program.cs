@@ -63,15 +63,19 @@ namespace P4_Hangman // Note: actual namespace depends on the project name.
 
             //BLOCK 2 - Pick a random word from the list
             Random randomWord = new Random();
-            int wordNumber = randomWord.Next(bankOfWords.Count);
-            string getWord = bankOfWords[wordNumber];
+            int wordIndex = randomWord.Next(bankOfWords.Count);
+            string pickedWord = bankOfWords[wordIndex];
 
-            Console.WriteLine(getWord);
+            Console.WriteLine(pickedWord);
 
             //BLOCK 3 - Discover if a character is part of the picked word
             //TODO: Try out String.IndexOf( ) and/or String.Contains( )
-
-
+            string guessedLetter = "";
+            Console.Write("Enter a letter: ");
+            guessedLetter = Console.ReadLine();
+            guessedLetter = guessedLetter.ToLower();
+            Console.WriteLine(pickedWord.Contains(guessedLetter));
+            Console.WriteLine(pickedWord.IndexOf(guessedLetter));
 
         }
     }
