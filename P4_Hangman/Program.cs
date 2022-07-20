@@ -18,16 +18,18 @@ namespace P4_Hangman // Note: actual namespace depends on the project name.
                 Console.Write(@$"{wordCount})");
                 word = Console.ReadLine();
 
-                //TODO: How to check for every new entry - Maybe DO/WHILE
-                if (String.IsNullOrEmpty(word) || String.IsNullOrWhiteSpace(word)) //Verifies if the word is empty, null, or spaces
+                //If TRUE loop again. If FALSE go to repeated word verification
+                while (String.IsNullOrEmpty(word) || String.IsNullOrWhiteSpace(word)) //Verifies if the word is empty, null, or spaces
                 {
+                   
                     Console.WriteLine("Null and spaces are invalidy entries. Please, try again.");
                     Console.Write("Enter a valid word: ");
                     word = Console.ReadLine();
+                
                 }
 
-                //TODO: How to check for every new entry - Maybe DO/WHILE
-                if (bankOfWords.Contains(word)) //Verifies if the word is repeated
+                //If TRUE loop again. If FALSE go to Add word to the list
+                while (bankOfWords.Contains(word)) //Verifies if the word is repeated
                 {
                     Console.WriteLine("This word already exist in your list.");
                     Console.Write("Enter a new word: ");
