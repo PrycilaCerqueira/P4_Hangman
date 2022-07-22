@@ -70,10 +70,15 @@ namespace P4_Hangman // Note: actual namespace depends on the project name.
 
             //BLOCK 3 - Discover if a character is part of the picked word
             //TODO: Loop the guessedLetter index through the pickedWord 
-            string guessedLetter = "";
-            Console.Write("Guess a letter: ");
-            guessedLetter = Console.ReadLine();
             
+            int numChances = pickedWord.Length;
+            string chances = new string('*', numChances);
+            Console.Write(chances);
+
+            string guessedLetter = Console.ReadLine().ToLower();
+            Console.Write("Guess a letter: ");
+                   
+
             char[] wordArray = pickedWord.ToCharArray();
 
             //pickedWord.IndexOf(guessedLetter);
@@ -93,9 +98,10 @@ namespace P4_Hangman // Note: actual namespace depends on the project name.
 
             foreach (char letter in wordArray)
             {
-                if (letter.ToString() == guessedLetter)
+                if (pickedWord.Contains(guessedLetter))
                 {
-                    Console.WriteLine(letter);
+                    int index = pickedWord.IndexOf(letter);
+                    Console.WriteLine(pickedWord.Substring(index, 1));
                 }
             }
 
