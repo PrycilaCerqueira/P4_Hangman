@@ -77,6 +77,7 @@ namespace P4_Hangman // Note: actual namespace depends on the project name.
             char[] wordArray = pickedWord.ToCharArray();
 
             //pickedWord.IndexOf(guessedLetter);
+            /*
             if (pickedWord.Contains(guessedLetter.ToLower()))
             {
                 for (int i = 0; i < wordArray.Length; i++)
@@ -86,6 +87,15 @@ namespace P4_Hangman // Note: actual namespace depends on the project name.
                         Console.Write(wordArray[i]);
                     }
                     
+                }
+            }
+            */
+
+            foreach (char letter in wordArray)
+            {
+                if (letter.ToString() == guessedLetter)
+                {
+                    Console.WriteLine(letter);
                 }
             }
 
