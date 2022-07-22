@@ -13,7 +13,7 @@ namespace P4_Hangman // Note: actual namespace depends on the project name.
             List<string> bankOfWords = new List<string>(); //Creates and initializes the list named bankOfWords
             Console.Write($"Create your own back of words. Enter 10 words:\n");
 
-            for (int wordCount = 1; wordCount <= 3; wordCount++) //Add words to the bankOfWords list
+            for (int wordCount = 1; wordCount <= 1; wordCount++) //Add words to the bankOfWords list
             {
                 Console.Write(@$"{wordCount})");
                 word = Console.ReadLine();
@@ -70,42 +70,25 @@ namespace P4_Hangman // Note: actual namespace depends on the project name.
 
             //BLOCK 3 - Discover if a character is part of the picked word
             //TODO: Loop the guessedLetter index through the pickedWord 
-            
-            int numChances = pickedWord.Length;
-            string chances = new string('*', numChances);
-            Console.Write(chances);
 
-            string guessedLetter = Console.ReadLine().ToLower();
-            Console.Write("Guess a letter: ");
-                   
-
+            Console.WriteLine($"You have {pickedWord.Length} guesses to find out the secrete word.");          
+                                           
             char[] wordArray = pickedWord.ToCharArray();
-
-            //pickedWord.IndexOf(guessedLetter);
-            /*
-            if (pickedWord.Contains(guessedLetter.ToLower()))
+                       
+            for (int letterIndex = 0; letterIndex < wordArray.Length; letterIndex++) 
             {
-                for (int i = 0; i < wordArray.Length; i++)
+                Console.Write("Guess a letter: ");
+                string guessedLetter = Console.ReadLine().ToLower();
+                
+                if (wordArray[letterIndex].ToString() == guessedLetter)
                 {
-                    if (guessedLetter == pickedWord[i].ToString())
-                    {
-                        Console.Write(wordArray[i]);
-                    }
-                    
+                    char[] resultArray = new char[] { };
+                    Console.Write();
                 }
-            }
-            */
 
-            foreach (char letter in wordArray)
-            {
-                if (pickedWord.Contains(guessedLetter))
-                {
-                    int index = pickedWord.IndexOf(letter);
-                    Console.WriteLine(pickedWord.Substring(index, 1));
-                }
-            }
 
-            
+            }
+        
 
             //BLOCK 4 - Draw the shape of the hangman
 
