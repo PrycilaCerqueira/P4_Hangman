@@ -4,7 +4,7 @@ namespace P4_Hangman // Note: actual namespace depends on the project name.
 {
     internal class Program
     {
-        static void Main(string[] args)
+        static void Main(string[] args, string v)
         {
             Console.Write("** Hangman Game **\n\n");
 
@@ -71,30 +71,32 @@ namespace P4_Hangman // Note: actual namespace depends on the project name.
             //BLOCK 3 - Discover if a character is part of the picked word
             //TODO: Loop the guessedLetter index through the pickedWord 
 
-            string guessedLetter = "";
-            char[] displayWordArray = pickedWord.ToCharArray();
-            
-            for (int i = 0; i < displayWordArray.Length; i++)
+            string guessedLetter;
+            string displayWord = pickedWord;
+                        
+            for (int i= 0; i < displayWord.Length; i++)
             {
-                displayWordArray[i] = '*';   
+                displayWord[i] = '*';
             }
-            string secreteWord = new string(displayWordArray);
-            Console.WriteLine($"\nYou have {pickedWord.Length} guesses to find out the secrete word.\nWord: {secreteWord}");          
-            
-            
-            for (int letterIndex = 0; letterIndex < displayWwordArray.Length; letterIndex++) 
+            Console.WriteLine($"\nYou have {pickedWord.Length} guesses to find out the secrete word.\nWord: {displayWord}");
+
+           
+            for (int i = 0; i < displayWord.Length; i++)
             {
-                Console.Write($"{letterIndex + 1}) Guess a letter: ");
+                Console.Write($"{i + 1}) Guess a letter: ");
                 guessedLetter = Console.ReadLine().ToLower();
-                
-                if (wordArray[letterIndex].ToString() == guessedLetter)
-                {
-                    char[] resultArray = new char[] { };
-                    Console.Write("test");
+
+                for (int j = 0; j < displayWord.Length; j++)
+                { 
+                    if (guessedLetter == pickedWord[j].ToString())
+                    {
+                        displayWord[j] = pickedWord[j];
+                        Console.WriteLine(displayWord);
+                    }
                 }
 
-
             }
+            
             
         
 
