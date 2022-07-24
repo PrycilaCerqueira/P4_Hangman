@@ -69,26 +69,24 @@ namespace P4_Hangman // Note: actual namespace depends on the project name.
             Console.WriteLine(pickedWord);
 
             //BLOCK 3 - Discover if a character is part of the picked word
-            //TODO: Loop the guessedLetter index through the pickedWord 
-
             string guessedLetter;
             string displayWord = pickedWord;
-            char[] displayWordChars = displayWord.ToCharArray();
+            char[] displayWordChars = displayWord.ToCharArray(); //Converts the displayWord from String to a Character Array
                         
-            for (int i= 0; i < displayWordChars.Length; i++)
+            for (int i= 0; i < displayWordChars.Length; i++) //Hides the secrete word 
             {
                 displayWordChars[i] = '*';
             }
-            displayWord = new string (displayWordChars);
+            displayWord = new string (displayWordChars); //Converts the hidden word from the Character Array to a String in order to display on the console
             Console.WriteLine($"\nYou have {pickedWord.Length} guesses to find out the secrete word.\nWord: {displayWord}");
 
            
-            for (int i = 0; i < displayWord.Length; i++)
+            for (int i = 0; i < displayWord.Length; i++) //Players input their letter guesses
             {
                 Console.Write($"{i + 1}) Guess a letter: ");
                 guessedLetter = Console.ReadLine().ToLower();
 
-                for (int j = 0; j < displayWord.Length; j++)
+                for (int j = 0; j < displayWord.Length; j++) //Verifies if the guesses are correct and slowly reveals the hidden word to the players
                 { 
                     if (guessedLetter == pickedWord[j].ToString())
                     {
