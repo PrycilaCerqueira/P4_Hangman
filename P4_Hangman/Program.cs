@@ -72,6 +72,7 @@ namespace P4_Hangman // Note: actual namespace depends on the project name.
             string guessedLetter;
             string displayWord = pickedWord;
             char[] displayWordChars = displayWord.ToCharArray(); //Converts the displayWord from String to a Character Array
+            List<string> repeatedLetters = new List<string>();
                         
             for (int i= 0; i < displayWordChars.Length; i++) //Hides the secrete word 
             {
@@ -87,14 +88,25 @@ namespace P4_Hangman // Note: actual namespace depends on the project name.
                 guessedLetter = Console.ReadLine().ToLower();
 
                 for (int j = 0; j < displayWord.Length; j++) //Verifies if the guesses are correct and slowly reveals the hidden word to the players
-                { 
+                {
+                    if (repeatedLetters.Contains(guessedLetter))
+                    {
+                        Console.WriteLine($"You already guessed the letter {guessedLetter.ToUpper()}");
+                        Console.Write("Try again: ");
+                        guessedLetter = Console.ReadLine().ToLower();
+                    }
                     if (guessedLetter == pickedWord[j].ToString())
                     {
                         displayWordChars[j] = pickedWord[j];
-                        displayWord = new string(displayWordChars);
-                        Console.WriteLine(displayWord);
+                        repeatedLetters.Add(guessedLetter);
+                    }
+                    else
+                    {
+
                     }
                 }
+                displayWord = new string(displayWordChars);
+                Console.WriteLine($"Updated word: {displayWord}");
 
             }
             
