@@ -4,7 +4,7 @@ namespace P4_Hangman // Note: actual namespace depends on the project name.
 {
     internal class Program
     {
-        static void Main(string[] args, string v)
+        static void Main(string[] args)
         {
             Console.Write("** Hangman Game **\n\n");
 
@@ -73,11 +73,13 @@ namespace P4_Hangman // Note: actual namespace depends on the project name.
 
             string guessedLetter;
             string displayWord = pickedWord;
+            char[] displayWordChars = displayWord.ToCharArray();
                         
-            for (int i= 0; i < displayWord.Length; i++)
+            for (int i= 0; i < displayWordChars.Length; i++)
             {
-                displayWord[i] = '*';
+                displayWordChars[i] = '*';
             }
+            displayWord = new string (displayWordChars);
             Console.WriteLine($"\nYou have {pickedWord.Length} guesses to find out the secrete word.\nWord: {displayWord}");
 
            
@@ -90,7 +92,8 @@ namespace P4_Hangman // Note: actual namespace depends on the project name.
                 { 
                     if (guessedLetter == pickedWord[j].ToString())
                     {
-                        displayWord[j] = pickedWord[j];
+                        displayWordChars[j] = pickedWord[j];
+                        displayWord = new string(displayWordChars);
                         Console.WriteLine(displayWord);
                     }
                 }
