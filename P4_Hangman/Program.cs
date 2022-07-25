@@ -94,28 +94,32 @@ namespace P4_Hangman // Note: actual namespace depends on the project name.
                         displayWordChars[j] = pickedWord[j];
                     }
                 }
+                displayWord = new string(displayWordChars);
+                Console.WriteLine($"Updated word: {displayWord}");// Shows the updated secrete word to the players
 
 
                 //TODO: Fix the loop of repeated words
                 char[] repeatedLettersChars = new char[] { 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z' };
                 for (int j = 0; j < repeatedLettersChars.Length; j++)
                 {
+                    
                     if (repeatedLettersChars[j] == '*')
                     {
                         Console.WriteLine($"You already guessed the letter {guessedLetter.ToUpper()}");
                         Console.Write("Try again: ");
                         guessedLetter = Console.ReadLine().ToLower();
                         repeatedLettersChars[j] = '*';
+
+                        displayWord = new string(displayWordChars);
+                        Console.WriteLine($"Updated word: {displayWord}");// Shows the updated secrete word to the players
                     }
-
-                    if (repeatedLettersChars[j].ToString() == guessedLetter)
-                    {
+                    
+                    if (repeatedLettersChars.ToString().Contains(guessedLetter))
+                    { 
                         repeatedLettersChars[j] = '*';
-                    }   
-
+                    }
                 }
-                displayWord = new string(displayWordChars);
-                Console.WriteLine($"Updated word: {displayWord}");// Shows the updated secrete word to the players
+                
             }
 
         }
