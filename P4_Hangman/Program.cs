@@ -73,8 +73,6 @@ namespace P4_Hangman // Note: actual namespace depends on the project name.
             string displayWord = pickedWord;
             char[] displayWordChars = displayWord.ToCharArray(); //Converts the displayWord from String to a Character Array
             
-            char[] repeatedLettersChars = {};
-                        
             for (int i= 0; i < displayWordChars.Length; i++) //Hides the secrete word 
             {
                 displayWordChars[i] = '*';
@@ -87,37 +85,45 @@ namespace P4_Hangman // Note: actual namespace depends on the project name.
             {
                 Console.Write($"{i + 1}) Guess a letter: ");
                 guessedLetter = Console.ReadLine().ToLower();
-
+                
                 for (int j = 0; j < displayWord.Length; j++) //Verifies if the guesses are correct and slowly reveals the hidden word to the players
                 {
+                    
                     if (guessedLetter == pickedWord[j].ToString())
                     {
                         displayWordChars[j] = pickedWord[j];
                     }
                 }
-                displayWord = new string(displayWordChars);
-                Console.WriteLine($"Updated word: {displayWord}");// Shows the updated secrete word to the players
+
 
                 //TODO: Fix the loop of repeated words
-                repeatedLetters[j] = guessedLetter
-                if (repeatedLetters.ToString() == guessedLetter)
+                char[] repeatedLettersChars = new char[] { 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z' };
+                for (int j = 0; j < repeatedLettersChars.Length; j++)
                 {
-                    Console.WriteLine($"You already guessed the letter {guessedLetter.ToUpper()}");
-                    Console.Write("Try again: ");
-                    guessedLetter = Console.ReadLine().ToLower();
-                }
-                else
-                {
+                    if (repeatedLettersChars[j] == '*')
+                    {
+                        Console.WriteLine($"You already guessed the letter {guessedLetter.ToUpper()}");
+                        Console.Write("Try again: ");
+                        guessedLetter = Console.ReadLine().ToLower();
+                        repeatedLettersChars[j] = '*';
+                    }
+
+                    if (repeatedLettersChars[j].ToString() == guessedLetter)
+                    {
+                        repeatedLettersChars[j] = '*';
+                    }   
 
                 }
-
+                displayWord = new string(displayWordChars);
+                Console.WriteLine($"Updated word: {displayWord}");// Shows the updated secrete word to the players
             }
+
+        }
             
             
         
-
             //BLOCK 4 - Draw the shape of the hangman
 
-        }
+        
     }
 }
