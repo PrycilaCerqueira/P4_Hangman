@@ -72,7 +72,8 @@ namespace P4_Hangman // Note: actual namespace depends on the project name.
             string guessedLetter;
             string displayWord = pickedWord;
             char[] displayWordChars = displayWord.ToCharArray(); //Converts the displayWord from String to a Character Array
-            
+            List<string> listOfRepeatedLetters = new List<string>(); //List to store all the guessed letters
+
             for (int i= 0; i < displayWordChars.Length; i++) //Hides the secrete word 
             {
                 displayWordChars[i] = '*';
@@ -81,7 +82,6 @@ namespace P4_Hangman // Note: actual namespace depends on the project name.
             Console.WriteLine($"\nYou have {pickedWord.Length} guesses to find out the secrete word.\nWord: {displayWord}");
 
             int maxTries = displayWord.Length;
-           
             for (int tryCount = 0; tryCount < maxTries; tryCount++) //Players input their letter guesses
             {
                 Console.Write($"{tryCount + 1}) Guess a letter: ");
@@ -96,39 +96,30 @@ namespace P4_Hangman // Note: actual namespace depends on the project name.
                 }
                 displayWord = new string(displayWordChars);
                 Console.WriteLine($"Updated word: {displayWord}");// Shows the updated secrete word to the players
+                listOfRepeatedLetters.Add(guessedLetter); //Adds the guessed letter to the guessed letters list 
 
 
                 //TODO: Fix the loop of repeated words
                 //check if the guessed letter is in the list already
                 //suggestion: after every guess add the guessed letter to a list,
-
-
-
-
-                /*
-                char[] repeatedLettersChars = new char[] { 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z' };
-                for (int j = 0; j < repeatedLettersChars.Length; j++)
+                for (int rLetterIndex = 0; rLetterIndex < listOfRepeatedLetters.Count; rLetterIndex++)
                 {
-                    repeatedLettersChars[j] = '*';
-                    if (repeatedLettersChars[j] == '*')
+                    if (guessedLetter != listOfRepeatedLetters[rLetterIndex])
                     {
-                        repeatedLettersChars[j] = '*';
-
-                        Console.WriteLine($"You already guessed the letter {guessedLetter.ToUpper()}");
-                        Console.Write("Try again: ");
-                        guessedLetter = Console.ReadLine().ToLower();
-                        repeatedLettersChars[j] = '*';
-
-                        displayWord = new string(displayWordChars);
-                        Console.WriteLine($"Updated word: {displayWord}");// Shows the updated secrete word to the players
+                        continue;
                     }
-                    
-                    if (repeatedLettersChars.ToString().Contains(guessedLetter))
-                    { 
-                        repeatedLettersChars[j] = '*';
+                    else
+                    {
+                        Console.WriteLine($"You already guessed letter {guessedLetter.ToUpper()}. Try again!");
+                        Console.Write("New letter: ");
+                        guessedLetter = Console.ReadLine().ToLower();
+                        listOfRepeatedLetters.Add(guessedLetter);
+
                     }
                 }
-                */
+
+
+
 
             }
 
