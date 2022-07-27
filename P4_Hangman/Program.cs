@@ -13,7 +13,7 @@ namespace P4_Hangman // Note: actual namespace depends on the project name.
             List<string> bankOfWords = new List<string>(); //Creates and initializes the list named bankOfWords
             Console.Write($"Create your own back of words. Enter 10 words:\n");
 
-            for (int wordCount = 0; wordCount < 1; wordCount++) //Add words to the bankOfWords list
+            for (int wordCount = 0; wordCount < 3; wordCount++) //Add words to the bankOfWords list
             {
                 Console.Write(@$"{wordCount + 1})");
                 word = Console.ReadLine();
@@ -52,7 +52,7 @@ namespace P4_Hangman // Note: actual namespace depends on the project name.
             
             while (confirmation.ToLower() != "y" && confirmation.ToLower() != "n") //Confirms if the player entered a valid confirmation word
             {
-                Console.Write("This is an invalid entry. Choose Yes or No to proceed: ");
+                Console.Write("This is an invalid entry. Choose Y (yes) or N (no) to proceed: ");
                 confirmation = Console.ReadLine();
             }
             if (confirmation.ToLower() == "n") //Confirms if the player would like to proceed in the game
@@ -61,12 +61,12 @@ namespace P4_Hangman // Note: actual namespace depends on the project name.
                 Environment.Exit(0); //Exits the console, forcing the game to end 
             }
 
+
             //BLOCK 2 - Pick a random word from the list
             Random rnd = new Random();
             int wordIndex = rnd.Next(bankOfWords.Count);
             string pickedWord = bankOfWords[wordIndex];
 
-            Console.WriteLine(pickedWord);
 
             //BLOCK 3 - Discover if a character is part of the picked word
             string guessedLetter;
@@ -74,58 +74,51 @@ namespace P4_Hangman // Note: actual namespace depends on the project name.
             char[] displayWordChars = displayWord.ToCharArray(); //Converts the displayWord from String to a Character Array
             List<string> listOfRepeatedLetters = new List<string>(); //List to store all the guessed letters
 
-            for (int i= 0; i < displayWordChars.Length; i++) //Hides the secrete word 
+            for (int i= 0; i < displayWordChars.Length; i++) //Hides the secret word 
             {
                 displayWordChars[i] = '*';
             }
             displayWord = new string (displayWordChars); //Converts the hidden word from the Character Array to a String in order to display on the console
-            Console.WriteLine($"\nYou have {pickedWord.Length} guesses to find out the secrete word.\nWord: {displayWord}");
+            Console.WriteLine($"\nYou have {pickedWord.Length} guesses to find out the secret word.\nWord: {displayWord}");
 
             int maxTries = displayWord.Length;
             for (int tryCount = 0; tryCount < maxTries; tryCount++) //Players input their letter guesses
             {
                 Console.Write($"\n{tryCount + 1}) Guess a letter: ");
                 guessedLetter = Console.ReadLine().ToLower();
+                
+                //TODO: the ELSE brings a new letter to the program, but it has passed the the array[0] check. Ex.: CASACO .... Array[0] didn't update, only Array[4].
+                
+                for (int letterIndex = 0; letterIndex < displayWord.Length; letterIndex++) //Verifies if the guesses are correct and slowly reveals the hidden word to the players
+                {
+                    if (!listOfRepeatedLetters.Contains(guessedLetter)) //Confirms that the guessedLetter was NOT guessed yet
+                    {
+                        if (guessedLetter == pickedWord[letterIndex].ToString())
+                        {
+                            displayWordChars[letterIndex] = Convert.ToChar(guessedLetter);
+                        }
+                    }
+                    else //If the letter WAS guessed, ask for a new one. 
+                    {
+                        do
+                        {
+                            Console.WriteLine($"You already guessed the letter {guessedLetter.ToUpper()}. Try again!");
+                            Console.Write("New letter: ");
+                            guessedLetter = Console.ReadLine().ToLower();
+
+                        } while (listOfRepeatedLetters.Contains(guessedLetter)); //Loops if the list contains the guessedLetter. If not, go to the next step                
+                    }
+                }
                 listOfRepeatedLetters.Add(guessedLetter); //Adds the guessed letter to the guessed letters list 
 
-                for (int letterIndex = 0; letterIndex < displayWord.Length; letterIndex++) //Verifies if the guesses are correct and slowly reveals the hidden word to the players
-                {                    
-                    if (guessedLetter == pickedWord[letterIndex].ToString())
-                    {
-                        displayWordChars[letterIndex] = Convert.ToChar(guessedLetter);
-                    }
-                }
-                if (!pickedWord.Contains(guessedLetter))
+                if (!pickedWord.Contains(guessedLetter))//Displays a message if the letter is NOT part of the secret word
                 {
-                    Console.WriteLine($"The letter {guessedLetter.ToUpper()} is not in the secrete word.");
+                    Console.WriteLine($"The letter {guessedLetter.ToUpper()} is not in the secret word.");
                 }
-                displayWord = new string(displayWordChars);
-                Console.WriteLine($"Updated word: {displayWord}");// Shows the updated secrete word to the players
+                             
+                displayWord = new string(displayWordChars); //
+                Console.WriteLine($"Updated word: {displayWord}"); // Shows the updated secret word to the players
                 
-
-
-                //TODO: Fix the loop of repeated words
-                //check if the guessed letter is in the list already
-                //suggestion: after every guess add the guessed letter to a list,
-                /*for (int rLetterIndex = 0; rLetterIndex < listOfRepeatedLetters.Count; rLetterIndex++)
-                {
-                    if (guessedLetter != listOfRepeatedLetters[rLetterIndex])
-                    {
-                        continue;
-                    }
-                    else
-                    {
-                        Console.WriteLine($"You already guessed letter {guessedLetter.ToUpper()}. Try again!");
-                        Console.Write("New letter: ");
-                        guessedLetter = Console.ReadLine().ToLower();
-                        listOfRepeatedLetters.Add(guessedLetter);
-
-                    }
-                }
-                */
-
-
-
             }
 
         }
