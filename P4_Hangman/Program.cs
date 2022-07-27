@@ -84,9 +84,10 @@ namespace P4_Hangman // Note: actual namespace depends on the project name.
             int maxTries = displayWord.Length;
             for (int tryCount = 0; tryCount < maxTries; tryCount++) //Players input their letter guesses
             {
-                Console.Write($"{tryCount + 1}) Guess a letter: ");
+                Console.Write($"\n{tryCount + 1}) Guess a letter: ");
                 guessedLetter = Console.ReadLine().ToLower();
-                
+                listOfRepeatedLetters.Add(guessedLetter); //Adds the guessed letter to the guessed letters list 
+
                 for (int letterIndex = 0; letterIndex < displayWord.Length; letterIndex++) //Verifies if the guesses are correct and slowly reveals the hidden word to the players
                 {                    
                     if (guessedLetter == pickedWord[letterIndex].ToString())
@@ -94,15 +95,19 @@ namespace P4_Hangman // Note: actual namespace depends on the project name.
                         displayWordChars[letterIndex] = Convert.ToChar(guessedLetter);
                     }
                 }
+                if (!pickedWord.Contains(guessedLetter))
+                {
+                    Console.WriteLine($"The letter {guessedLetter.ToUpper()} is not in the secrete word.");
+                }
                 displayWord = new string(displayWordChars);
                 Console.WriteLine($"Updated word: {displayWord}");// Shows the updated secrete word to the players
-                listOfRepeatedLetters.Add(guessedLetter); //Adds the guessed letter to the guessed letters list 
+                
 
 
                 //TODO: Fix the loop of repeated words
                 //check if the guessed letter is in the list already
                 //suggestion: after every guess add the guessed letter to a list,
-                for (int rLetterIndex = 0; rLetterIndex < listOfRepeatedLetters.Count; rLetterIndex++)
+                /*for (int rLetterIndex = 0; rLetterIndex < listOfRepeatedLetters.Count; rLetterIndex++)
                 {
                     if (guessedLetter != listOfRepeatedLetters[rLetterIndex])
                     {
@@ -117,7 +122,7 @@ namespace P4_Hangman // Note: actual namespace depends on the project name.
 
                     }
                 }
-
+                */
 
 
 
