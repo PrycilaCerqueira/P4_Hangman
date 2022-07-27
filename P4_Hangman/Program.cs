@@ -91,14 +91,7 @@ namespace P4_Hangman // Note: actual namespace depends on the project name.
                 
                 for (int letterIndex = 0; letterIndex < displayWord.Length; letterIndex++) //Verifies if the guesses are correct and slowly reveals the hidden word to the players
                 {
-                    if (!listOfRepeatedLetters.Contains(guessedLetter)) //Confirms that the guessedLetter was NOT guessed yet
-                    {
-                        if (guessedLetter == pickedWord[letterIndex].ToString())
-                        {
-                            displayWordChars[letterIndex] = Convert.ToChar(guessedLetter);
-                        }
-                    }
-                    else //If the letter WAS guessed, ask for a new one. 
+                    if (listOfRepeatedLetters.Contains(guessedLetter)) //Confirms that the guessedLetter was NOT guessed yet
                     {
                         do
                         {
@@ -106,7 +99,15 @@ namespace P4_Hangman // Note: actual namespace depends on the project name.
                             Console.Write("New letter: ");
                             guessedLetter = Console.ReadLine().ToLower();
 
-                        } while (listOfRepeatedLetters.Contains(guessedLetter)); //Loops if the list contains the guessedLetter. If not, go to the next step                
+                        } while (listOfRepeatedLetters.Contains(guessedLetter)); //Loops if the list contains the guessedLetter. If not, go to the next step 
+                                                
+                    }
+                    if(!listOfRepeatedLetters.Contains(guessedLetter)) //If the letter WAS guessed, ask for a new one. 
+                    {
+                        if (guessedLetter == pickedWord[letterIndex].ToString())
+                        {
+                            displayWordChars[letterIndex] = Convert.ToChar(guessedLetter);
+                        }
                     }
                 }
                 listOfRepeatedLetters.Add(guessedLetter); //Adds the guessed letter to the guessed letters list 
