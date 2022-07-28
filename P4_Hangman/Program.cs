@@ -8,18 +8,31 @@ namespace P4_Hangman // Note: actual namespace depends on the project name.
         {
             Console.Write("** Hangman Game **\n\n");
 
+            /*TODO:
+                While loop
+                Another problem of your checks is, that they are happen sequentially, so the following could happen:
+                - user enters a valid word "test"
+                - user tries to enter the same word "test"
+                   --> this passes the empty check, because this was valid 👍
+                   --> but the wordbank already contains "test" so the user is forced to input another
+                - now the user can enter "    " and this would be added to the wordbank
+
+                And the last thing I noticed in BLOCK 1 is, that you check if the given word is already in the bank,
+                but then add the word.ToLower(), which means the user is able to enter for example "Test" multiple times
+            */
+
             //BLOCK 1 - List of words creation
             string word = "";
             List<string> bankOfWords = new List<string>(); //Creates and initializes the list named bankOfWords
             Console.Write($"Create your own back of words. Enter 10 words:\n");
 
-            for (int wordCount = 0; wordCount < 3; wordCount++) //Add words to the bankOfWords list
+            for (int wordCount = 0; wordCount < 10; wordCount++) //Add words to the bankOfWords list
             {
                 Console.Write(@$"{wordCount + 1})");
                 word = Console.ReadLine();
 
                 //If TRUE loop again. If FALSE go to repeated word verification
-                while (String.IsNullOrEmpty(word) || String.IsNullOrWhiteSpace(word)) //Verifies if the word is empty, null, or spaces
+                while (String.IsNullOrWhiteSpace(word)) //Verifies if the word is empty, null, or spaces
                 {
                    
                     Console.WriteLine("Null and spaces are invalidy entries. Please, try again.");
@@ -81,53 +94,46 @@ namespace P4_Hangman // Note: actual namespace depends on the project name.
             displayWord = new string (displayWordChars); //Converts the hidden word from the Character Array to a String in order to display on the console
             Console.WriteLine($"\nYou have {pickedWord.Length} guesses to find out the secret word.\nWord: {displayWord}");
 
+
+            /*TODO:
+                Fix the listOfrepetedLetters check
+                Next thing you should do after integrating our feedback is implement a win condition :D
+            */
             int maxTries = displayWord.Length;
             for (int tryCount = 0; tryCount < maxTries; tryCount++) //Players input their letter guesses
             {
                 Console.Write($"\n{tryCount + 1}) Guess a letter: ");
                 guessedLetter = Console.ReadLine().ToLower();
-                
-                //TODO: the ELSE brings a new letter to the program, but it has passed the the array[0] check. Ex.: CASACO .... Array[0] didn't update, only Array[4].
-                
-                for (int letterIndex = 0; letterIndex < displayWord.Length; letterIndex++) //Verifies if the guesses are correct and slowly reveals the hidden word to the players
-                {
-                    if (listOfRepeatedLetters.Contains(guessedLetter)) //Confirms that the guessedLetter was NOT guessed yet
-                    {
-                        do
-                        {
-                            Console.WriteLine($"You already guessed the letter {guessedLetter.ToUpper()}. Try again!");
-                            Console.Write("New letter: ");
-                            guessedLetter = Console.ReadLine().ToLower();
 
-                        } while (listOfRepeatedLetters.Contains(guessedLetter)); //Loops if the list contains the guessedLetter. If not, go to the next step 
-                                                
-                    }
-                    if(!listOfRepeatedLetters.Contains(guessedLetter)) //If the letter WAS guessed, ask for a new one. 
-                    {
-                        if (guessedLetter == pickedWord[letterIndex].ToString())
-                        {
-                            displayWordChars[letterIndex] = Convert.ToChar(guessedLetter);
-                        }
-                    }
+                while (listOfRepeatedLetters.Contains(guessedLetter)) ; //Loops if the list contains the guessedLetter. If not, go to the next step
+                {
+                    Console.WriteLine($"You already guessed the letter {guessedLetter.ToUpper()}. Try again!");
+                    Console.Write("New letter: ");
+                    guessedLetter = Console.ReadLine().ToLower();
+
                 }
                 listOfRepeatedLetters.Add(guessedLetter); //Adds the guessed letter to the guessed letters list 
+
+                for (int letterIndex = 0; letterIndex < displayWord.Length; letterIndex++) //Verifies if the guesses are correct and slowly reveals the hidden word to the players
+                {
+                    if (guessedLetter == pickedWord[letterIndex].ToString())
+                    {
+                        displayWordChars[letterIndex] = Convert.ToChar(guessedLetter);
+                    }
+                }
 
                 if (!pickedWord.Contains(guessedLetter))//Displays a message if the letter is NOT part of the secret word
                 {
                     Console.WriteLine($"The letter {guessedLetter.ToUpper()} is not in the secret word.");
                 }
                              
-                displayWord = new string(displayWordChars); //
+                displayWord = new string(displayWordChars);
                 Console.WriteLine($"Updated word: {displayWord}"); // Shows the updated secret word to the players
                 
             }
 
         }
             
-            
-        
-            //BLOCK 4 - Draw the shape of the hangman
-
-        
+      
     }
 }
