@@ -63,7 +63,7 @@ namespace P4_Hangman // Note: actual namespace depends on the project name.
             Console.Write("\nAre you happy with your list? (Y/N) ");
             confirmation = Console.ReadLine(); 
             
-            while (confirmation.ToLower() != "y" && confirmation.ToLower() != "n") //Confirms if the player entered a valid confirmation word
+            while (confirmation.ToLower() != "y") //Confirms if the player entered a valid confirmation word
             {
                 Console.Write("This is an invalid entry. Choose Y (yes) or N (no) to proceed: ");
                 confirmation = Console.ReadLine();
@@ -96,8 +96,7 @@ namespace P4_Hangman // Note: actual namespace depends on the project name.
 
 
             /*TODO:
-                Fix the listOfrepetedLetters check
-                Next thing you should do after integrating our feedback is implement a win condition :D
+               Next thing you should do after integrating our feedback is implement a win condition :D
             */
             int maxTries = displayWord.Length;
             for (int tryCount = 0; tryCount < maxTries; tryCount++) //Players input their letter guesses
@@ -105,7 +104,7 @@ namespace P4_Hangman // Note: actual namespace depends on the project name.
                 Console.Write($"\n{tryCount + 1}) Guess a letter: ");
                 guessedLetter = Console.ReadLine().ToLower();
 
-                while (listOfRepeatedLetters.Contains(guessedLetter)) ; //Loops if the list contains the guessedLetter. If not, go to the next step
+                while (listOfRepeatedLetters.Contains(guessedLetter))//Loops if the list contains the guessedLetter. If not, go to the next step
                 {
                     Console.WriteLine($"You already guessed the letter {guessedLetter.ToUpper()}. Try again!");
                     Console.Write("New letter: ");
