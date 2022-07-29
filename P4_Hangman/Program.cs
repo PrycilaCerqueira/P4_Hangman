@@ -8,22 +8,9 @@ namespace P4_Hangman // Note: actual namespace depends on the project name.
         {
             Console.Write("** Hangman Game **\n\n");
 
-            /*TODO:
-                While loop
-                Another problem of your checks is, that they are happen sequentially, so the following could happen:
-                - user enters a valid word "test"
-                - user tries to enter the same word "test"
-                   --> this passes the empty check, because this was valid 👍
-                   --> but the wordbank already contains "test" so the user is forced to input another
-                - now the user can enter "    " and this would be added to the wordbank
-
-                And the last thing I noticed in BLOCK 1 is, that you check if the given word is already in the bank,
-                but then add the word.ToLower(), which means the user is able to enter for example "Test" multiple times
-            */
-
             //BLOCK 1 - List of words creation
             string word = "";
-            int numOfWords = 3;
+            int numOfWords = 10;
             int wordCount = 0;
 
             List<string> bankOfWords = new List<string>(); //Creates and initializes the list named bankOfWords
@@ -46,46 +33,13 @@ namespace P4_Hangman // Note: actual namespace depends on the project name.
                     continue;
                 }
                 
-                if (wordCount < numOfWords)
+                else 
                 {
                     bankOfWords.Add(word.ToLower()); //Adds a lower case converted word to the list
                     wordCount++;
                 }
 
             }
-
-
-
-
-
-            /*
-            for (int wordCount = 0; wordCount < numOfWords; wordCount++) //Add words to the bankOfWords list
-            {
-                Console.Write(@$"{wordCount + 1})");
-                word = Console.ReadLine().ToLower().Trim();
-
-                //If TRUE loop again. If FALSE go to repeated word verification
-                while (String.IsNullOrWhiteSpace(word)) //Verifies if the word is empty, null, or spaces
-                {
-                   
-                    Console.WriteLine("Null and spaces are invalidy entries. Please, try again.");
-                    Console.Write("Enter a valid word: ");
-                    word = Console.ReadLine().ToLower().Trim();
-
-                }
-
-                //If TRUE loop again. If FALSE go to Add word to the list
-                while (bankOfWords.Contains(word)) //Verifies if the word is repeated
-                {
-                    Console.WriteLine("This word already exist in your list.");
-                    Console.Write("Enter a new word: ");
-                    word = Console.ReadLine().ToLower().Trim();
-                }
-
-                bankOfWords.Add(word.ToLower()); //Adds a lower case converted word to the list
-
-             }
-            */
 
             Console.WriteLine("\nHere are your saved words:");
             foreach (string item in bankOfWords) //Print the bankOfWords items for the player
