@@ -73,6 +73,8 @@ namespace P4_Hangman // Note: actual namespace depends on the project name.
                 Console.Write("Sorry to hear that! See you next time.");
                 Environment.Exit(0); //Exits the console, forcing the game to end 
             }
+            Console.Clear();//Clear the console, so the player won't see the banck of words
+
 
 
             //BLOCK 2 - Pick a random word from the list
@@ -112,6 +114,8 @@ namespace P4_Hangman // Note: actual namespace depends on the project name.
 
                 }
                 listOfRepeatedLetters.Add(guessedLetter); //Adds the guessed letter to the guessed letters list 
+
+
 
                 for (int letterIndex = 0; letterIndex < displayWord.Length; letterIndex++) //Verifies if the guesses are correct and slowly reveals the hidden word to the players
                 {
