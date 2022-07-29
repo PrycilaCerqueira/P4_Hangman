@@ -24,45 +24,38 @@ namespace P4_Hangman // Note: actual namespace depends on the project name.
             //BLOCK 1 - List of words creation
             string word = "";
             int numOfWords = 3;
-
-   
+            int wordCount = 0;
 
             List<string> bankOfWords = new List<string>(); //Creates and initializes the list named bankOfWords
             Console.Write($"Create your own back of words. Enter {numOfWords} words:\n");
 
-            for (int wordCount = 0; wordCount < numOfWords; wordCount++) //Add words to the bankOfWords list
+            while (true && wordCount < numOfWords)
             {
                 Console.Write(@$"{wordCount + 1})");
                 word = Console.ReadLine().ToLower().Trim();
 
-                while (word != null)
+                if (String.IsNullOrWhiteSpace(word)) //Verifies if the word is empty, null, or spaces
                 {
-                    if (String.IsNullOrWhiteSpace(word)) //Verifies if the word is empty, null, or spaces
-                    {
-                        Console.WriteLine("Null and spaces are invalidy entries.");
-                        
-                    }
-
-                    if (bankOfWords.Contains(word)) //Verifies if the word is repeated
-                    {
-                        Console.WriteLine("This word already exist in your list.");
-                        
-                    }
-
-                    else
-                    {
-                        Console.WriteLine("The word is valid!");
-                        bankOfWords.Add(word.ToLower()); //Adds a lower case converted word to the list
-                        word = null;
-
-                    }
-
+                    Console.WriteLine("Null and spaces are invalidy entries.");
+                    continue;
                 }
 
-                //bankOfWords.Add(word.ToLower()); //Adds a lower case converted word to the list
+                if (bankOfWords.Contains(word)) //Verifies if the word is repeated
+                {
+                    Console.WriteLine("This word already exist in your list.");
+                    continue;
+                }
+                
+                if (wordCount < numOfWords)
+                {
+                    bankOfWords.Add(word.ToLower()); //Adds a lower case converted word to the list
+                    wordCount++;
+                }
+
             }
 
-            
+
+
 
 
             /*
