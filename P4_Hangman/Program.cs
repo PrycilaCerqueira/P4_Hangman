@@ -26,10 +26,10 @@ namespace P4_Hangman // Note: actual namespace depends on the project name.
             List<string> bankOfWords = new List<string>(); //Creates and initializes the list named bankOfWords
             Console.Write($"Create your own back of words. Enter 10 words:\n");
 
-            for (int wordCount = 0; wordCount < 10; wordCount++) //Add words to the bankOfWords list
+            for (int wordCount = 0; wordCount < 3; wordCount++) //Add words to the bankOfWords list
             {
                 Console.Write(@$"{wordCount + 1})");
-                word = Console.ReadLine();
+                word = Console.ReadLine().ToLower().Trim();
 
                 //If TRUE loop again. If FALSE go to repeated word verification
                 while (String.IsNullOrWhiteSpace(word)) //Verifies if the word is empty, null, or spaces
@@ -37,8 +37,8 @@ namespace P4_Hangman // Note: actual namespace depends on the project name.
                    
                     Console.WriteLine("Null and spaces are invalidy entries. Please, try again.");
                     Console.Write("Enter a valid word: ");
-                    word = Console.ReadLine();
-                
+                    word = Console.ReadLine().ToLower().Trim();
+
                 }
 
                 //If TRUE loop again. If FALSE go to Add word to the list
@@ -46,7 +46,7 @@ namespace P4_Hangman // Note: actual namespace depends on the project name.
                 {
                     Console.WriteLine("This word already exist in your list.");
                     Console.Write("Enter a new word: ");
-                    word = Console.ReadLine();
+                    word = Console.ReadLine().ToLower().Trim();
                 }
 
                 bankOfWords.Add(word.ToLower()); //Adds a lower case converted word to the list
@@ -61,7 +61,7 @@ namespace P4_Hangman // Note: actual namespace depends on the project name.
 
             string confirmation = "";
             Console.Write("\nAre you happy with your list? Enter Y to continue:  ");
-            confirmation = Console.ReadLine().ToLower(); 
+            confirmation = Console.ReadLine().ToLower().Trim(); 
             
             if (confirmation != "y") //Confirms if the player would like to proceed in the game
             {
@@ -98,18 +98,23 @@ namespace P4_Hangman // Note: actual namespace depends on the project name.
             for (int tryCount = 0; tryCount < maxTries; tryCount++) //Players input their letter guesses
             {
                 Console.Write($"\n{tryCount + 1}) Guess a letter: ");
-                guessedLetter = Console.ReadLine().ToLower();
+                guessedLetter = Console.ReadLine().ToLower().Trim();
+
+                while (string.IsNullOrEmpty(guessedLetter))
+                {
+                    Console.WriteLine("Null and spaces are invalidy entries. Try again!");
+                    Console.Write("New letter: ");
+                    guessedLetter = Console.ReadLine().ToLower().Trim();
+                }
 
                 while (listOfRepeatedLetters.Contains(guessedLetter))//Loops if the list contains the guessedLetter. If not, go to the next step
                 {
                     Console.WriteLine($"You already guessed the letter {guessedLetter.ToUpper()}. Try again!");
                     Console.Write("New letter: ");
-                    guessedLetter = Console.ReadLine().ToLower();
+                    guessedLetter = Console.ReadLine().ToLower().Trim();
 
                 }
                 listOfRepeatedLetters.Add(guessedLetter); //Adds the guessed letter to the guessed letters list 
-
-
 
                 for (int letterIndex = 0; letterIndex < displayWord.Length; letterIndex++) //Verifies if the guesses are correct and slowly reveals the hidden word to the players
                 {
