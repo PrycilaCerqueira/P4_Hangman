@@ -23,10 +23,12 @@ namespace P4_Hangman // Note: actual namespace depends on the project name.
 
             //BLOCK 1 - List of words creation
             string word = "";
-            List<string> bankOfWords = new List<string>(); //Creates and initializes the list named bankOfWords
-            Console.Write($"Create your own back of words. Enter 10 words:\n");
+            int numOfWords = 3;
 
-            for (int wordCount = 0; wordCount < 3; wordCount++) //Add words to the bankOfWords list
+            List<string> bankOfWords = new List<string>(); //Creates and initializes the list named bankOfWords
+            Console.Write($"Create your own back of words. Enter {numOfWords} words:\n");
+
+            for (int wordCount = 0; wordCount < numOfWords; wordCount++) //Add words to the bankOfWords list
             {
                 Console.Write(@$"{wordCount + 1})");
                 word = Console.ReadLine().ToLower().Trim();
