@@ -60,21 +60,15 @@ namespace P4_Hangman // Note: actual namespace depends on the project name.
             }
 
             string confirmation = "";
-            Console.Write("\nAre you happy with your list? (Y/N) ");
-            confirmation = Console.ReadLine(); 
+            Console.Write("\nAre you happy with your list? Enter Y to continue:  ");
+            confirmation = Console.ReadLine().ToLower(); 
             
-            while (confirmation.ToLower() != "y") //Confirms if the player entered a valid confirmation word
-            {
-                Console.Write("This is an invalid entry. Choose Y (yes) or N (no) to proceed: ");
-                confirmation = Console.ReadLine();
-            }
-            if (confirmation.ToLower() == "n") //Confirms if the player would like to proceed in the game
+            if (confirmation != "y") //Confirms if the player would like to proceed in the game
             {
                 Console.Write("Sorry to hear that! See you next time.");
                 Environment.Exit(0); //Exits the console, forcing the game to end 
             }
             Console.Clear();//Clear the console, so the player won't see the banck of words
-
 
 
             //BLOCK 2 - Pick a random word from the list
