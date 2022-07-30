@@ -10,7 +10,7 @@ namespace P4_Hangman // Note: actual namespace depends on the project name.
 
             //BLOCK 1 - List of words creation
             string word = "";
-            int numOfWords = 3;
+            int numOfWords = 10;
 
             List<string> bankOfWords = new List<string>(); //Creates and initializes the list named bankOfWords
             Console.Write($"Create your own back of words. Enter {numOfWords} words:\n");
@@ -112,14 +112,19 @@ namespace P4_Hangman // Note: actual namespace depends on the project name.
 
                 if (!displayWord.Contains("*"))
                 {
-                    Console.WriteLine("\nYou win!");
+                    Console.Clear();
+                    Console.WriteLine($"\nYou win!\nThe word was {pickedWord.ToUpper()}");
                     break;
                 }
             }
 
             if (displayWord.Contains("*"))
             {
-                Console.WriteLine("\nYou lose!");
+                Console.Clear();
+                Console.WriteLine($"\nYou lose!\nThe word was {pickedWord.ToUpper()}");
+                
+                displayWord = new string(displayWordChars);
+                Console.WriteLine($"You guessed up to this point: {displayWord}");
             }
 
 
