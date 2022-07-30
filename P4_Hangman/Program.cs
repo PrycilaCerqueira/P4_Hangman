@@ -105,61 +105,22 @@ namespace P4_Hangman // Note: actual namespace depends on the project name.
                     }
                 }
                 
+                listOfRepeatedLetters.Add(guessedLetter);//Adds the guessed letter to the guessed letters list
                 displayWord = new string(displayWordChars);
                 Console.WriteLine($"Updated word: {displayWord}"); // Shows the updated secret word to the players
-                
-                listOfRepeatedLetters.Add(guessedLetter);//Adds the guessed letter to the guessed letters list 
                 letterCount++;
+
+                if (!displayWord.Contains("*"))
+                {
+                    Console.WriteLine("\nYou win!");
+                    break;
+                }
             }
 
-            /*
-                                    TODO:
-                                       Next thing you should do after integrating our feedback is implement a win condition :D
-
-
-                            int maxTries = displayWord.Length;
-                        for (int tryCount = 0; tryCount < maxTries; tryCount++) //Players input their letter guesses
-                        {
-                            Console.Write($"\n{tryCount + 1}) Guess a letter: ");
-                            guessedLetter = Console.ReadLine().ToLower().Trim();
-
-                            while (string.IsNullOrEmpty(guessedLetter))
-                            {
-                                Console.WriteLine("Null and spaces are invalidy entries. Try again!");
-                                Console.Write("New letter: ");
-                                guessedLetter = Console.ReadLine().ToLower().Trim();
-                            }
-
-                            while (listOfRepeatedLetters.Contains(guessedLetter))//Loops if the list contains the guessedLetter. If not, go to the next step
-                            {
-                                Console.WriteLine($"You already guessed the letter {guessedLetter.ToUpper()}. Try again!");
-                                Console.Write("New letter: ");
-                                guessedLetter = Console.ReadLine().ToLower().Trim();
-
-                            }
-                            listOfRepeatedLetters.Add(guessedLetter); //Adds the guessed letter to the guessed letters list 
-
-                            for (int letterIndex = 0; letterIndex < displayWord.Length; letterIndex++) //Verifies if the guesses are correct and slowly reveals the hidden word to the players
-                            {
-                                if (guessedLetter == pickedWord[letterIndex].ToString())
-                                {
-                                    displayWordChars[letterIndex] = Convert.ToChar(guessedLetter);
-                                }
-                            }
-
-                            if (!pickedWord.Contains(guessedLetter))//Displays a message if the letter is NOT part of the secret word
-                            {
-                                Console.WriteLine($"The letter {guessedLetter.ToUpper()} is not in the secret word.");
-                            }
-
-                            displayWord = new string(displayWordChars);
-                            Console.WriteLine($"Updated word: {displayWord}"); // Shows the updated secret word to the players
-
-                        }
-
-                    }
-              */
-
+            if (displayWord.Contains("*"))
+            {
+                Console.WriteLine("\nYou lose!");
+            }
 
 
         }
