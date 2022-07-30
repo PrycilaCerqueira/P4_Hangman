@@ -10,35 +10,29 @@ namespace P4_Hangman // Note: actual namespace depends on the project name.
 
             //BLOCK 1 - List of words creation
             string word = "";
-            int numOfWords = 10;
-            int wordCount = 0;
+            int numOfWords = 3;
 
             List<string> bankOfWords = new List<string>(); //Creates and initializes the list named bankOfWords
             Console.Write($"Create your own back of words. Enter {numOfWords} words:\n");
 
-            while (true && wordCount < numOfWords)
+            while (bankOfWords.Count < numOfWords)
             {
-                Console.Write(@$"{wordCount + 1})");
+                Console.Write(@$"{bankOfWords.Count + 1})");
                 word = Console.ReadLine().ToLower().Trim();
 
                 if (String.IsNullOrWhiteSpace(word)) //Verifies if the word is empty, null, or spaces
                 {
-                    Console.WriteLine("Null and spaces are invalidy entries.");
+                    Console.WriteLine("Null and spaces are invalidy entries. Try again!");
                     continue;
                 }
 
                 if (bankOfWords.Contains(word)) //Verifies if the word is repeated
                 {
-                    Console.WriteLine("This word already exist in your list.");
+                    Console.WriteLine("This word already exist in your list. Try again!");
                     continue;
                 }
-                
-                else 
-                {
-                    bankOfWords.Add(word.ToLower()); //Adds a lower case converted word to the list
-                    wordCount++;
-                }
 
+                bankOfWords.Add(word.ToLower()); //Adds a lower case converted word to the list
             }
 
             Console.WriteLine("\nHere are your saved words:");
@@ -49,8 +43,8 @@ namespace P4_Hangman // Note: actual namespace depends on the project name.
 
             string confirmation = "";
             Console.Write("\nAre you happy with your list? Enter Y to continue:  ");
-            confirmation = Console.ReadLine().ToLower().Trim(); 
-            
+            confirmation = Console.ReadLine().ToLower().Trim();
+
             if (confirmation != "y") //Confirms if the player would like to proceed in the game
             {
                 Console.Write("Sorry to hear that! See you next time.");
@@ -71,38 +65,37 @@ namespace P4_Hangman // Note: actual namespace depends on the project name.
             char[] displayWordChars = displayWord.ToCharArray(); //Converts the displayWord from String to a Character Array
             List<string> listOfRepeatedLetters = new List<string>(); //List to store all the guessed letters
 
-            for (int i= 0; i < displayWordChars.Length; i++) //Hides the secret word 
+            for (int i = 0; i < displayWordChars.Length; i++) //Hides the secret word 
             {
                 displayWordChars[i] = '*';
             }
-            displayWord = new string (displayWordChars); //Converts the hidden word from the Character Array to a String in order to display on the console
+            displayWord = new string(displayWordChars); //Converts the hidden word from the Character Array to a String in order to display on the console
             Console.WriteLine($"\nYou have {pickedWord.Length} guesses to find out the secret word.\nWord: {displayWord}");
 
-
-            /*TODO:
-               Next thing you should do after integrating our feedback is implement a win condition :D
-            */
             int maxTries = displayWord.Length;
-            for (int tryCount = 0; tryCount < maxTries; tryCount++) //Players input their letter guesses
+            int letterCount = 0;
+
+            while (letterCount < maxTries)
             {
-                Console.Write($"\n{tryCount + 1}) Guess a letter: ");
+                Console.Write($"\n{letterCount + 1}) Guess a letter: ");
                 guessedLetter = Console.ReadLine().ToLower().Trim();
 
-                while (string.IsNullOrEmpty(guessedLetter))
+                if (string.IsNullOrEmpty(guessedLetter))
                 {
                     Console.WriteLine("Null and spaces are invalidy entries. Try again!");
-                    Console.Write("New letter: ");
-                    guessedLetter = Console.ReadLine().ToLower().Trim();
+                    continue;
                 }
 
-                while (listOfRepeatedLetters.Contains(guessedLetter))//Loops if the list contains the guessedLetter. If not, go to the next step
+                if (listOfRepeatedLetters.Contains(guessedLetter))
                 {
                     Console.WriteLine($"You already guessed the letter {guessedLetter.ToUpper()}. Try again!");
-                    Console.Write("New letter: ");
-                    guessedLetter = Console.ReadLine().ToLower().Trim();
-
+                    continue;
                 }
-                listOfRepeatedLetters.Add(guessedLetter); //Adds the guessed letter to the guessed letters list 
+                
+                if (!pickedWord.Contains(guessedLetter))//Displays a message if the letter is NOT part of the secret word
+                {
+                    Console.WriteLine($"The letter {guessedLetter.ToUpper()} is not in the secret word.");
+                }
 
                 for (int letterIndex = 0; letterIndex < displayWord.Length; letterIndex++) //Verifies if the guesses are correct and slowly reveals the hidden word to the players
                 {
@@ -111,19 +104,64 @@ namespace P4_Hangman // Note: actual namespace depends on the project name.
                         displayWordChars[letterIndex] = Convert.ToChar(guessedLetter);
                     }
                 }
-
-                if (!pickedWord.Contains(guessedLetter))//Displays a message if the letter is NOT part of the secret word
-                {
-                    Console.WriteLine($"The letter {guessedLetter.ToUpper()} is not in the secret word.");
-                }
-                             
+                
                 displayWord = new string(displayWordChars);
                 Console.WriteLine($"Updated word: {displayWord}"); // Shows the updated secret word to the players
                 
+                listOfRepeatedLetters.Add(guessedLetter);//Adds the guessed letter to the guessed letters list 
+                letterCount++;
             }
 
+            /*
+                                    TODO:
+                                       Next thing you should do after integrating our feedback is implement a win condition :D
+
+
+                            int maxTries = displayWord.Length;
+                        for (int tryCount = 0; tryCount < maxTries; tryCount++) //Players input their letter guesses
+                        {
+                            Console.Write($"\n{tryCount + 1}) Guess a letter: ");
+                            guessedLetter = Console.ReadLine().ToLower().Trim();
+
+                            while (string.IsNullOrEmpty(guessedLetter))
+                            {
+                                Console.WriteLine("Null and spaces are invalidy entries. Try again!");
+                                Console.Write("New letter: ");
+                                guessedLetter = Console.ReadLine().ToLower().Trim();
+                            }
+
+                            while (listOfRepeatedLetters.Contains(guessedLetter))//Loops if the list contains the guessedLetter. If not, go to the next step
+                            {
+                                Console.WriteLine($"You already guessed the letter {guessedLetter.ToUpper()}. Try again!");
+                                Console.Write("New letter: ");
+                                guessedLetter = Console.ReadLine().ToLower().Trim();
+
+                            }
+                            listOfRepeatedLetters.Add(guessedLetter); //Adds the guessed letter to the guessed letters list 
+
+                            for (int letterIndex = 0; letterIndex < displayWord.Length; letterIndex++) //Verifies if the guesses are correct and slowly reveals the hidden word to the players
+                            {
+                                if (guessedLetter == pickedWord[letterIndex].ToString())
+                                {
+                                    displayWordChars[letterIndex] = Convert.ToChar(guessedLetter);
+                                }
+                            }
+
+                            if (!pickedWord.Contains(guessedLetter))//Displays a message if the letter is NOT part of the secret word
+                            {
+                                Console.WriteLine($"The letter {guessedLetter.ToUpper()} is not in the secret word.");
+                            }
+
+                            displayWord = new string(displayWordChars);
+                            Console.WriteLine($"Updated word: {displayWord}"); // Shows the updated secret word to the players
+
+                        }
+
+                    }
+              */
+
+
+
         }
-            
-      
     }
 }
