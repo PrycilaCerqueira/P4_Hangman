@@ -10,7 +10,7 @@ namespace P4_Hangman // Note: actual namespace depends on the project name.
 
             //BLOCK 1 - List of words creation
             string word = "";
-            int numOfWords = 3;
+            int numOfWords = 10;
 
             List<string> bankOfWords = new List<string>(); //Creates and initializes the list named bankOfWords
             
