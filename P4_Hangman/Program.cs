@@ -35,10 +35,9 @@ namespace P4_Hangman // Note: actual namespace depends on the project name.
 
             UI.ShowBankOfWords(bankOfWords); //Calls the UI.ShowBankOfWords to print words to the console 
 
-            string confirmation = UI.YesNoAnswer();
-            if (confirmation != "Y") //Confirms if the player would like to proceed in the game
+            string confirmation = UI.YesNoAnswer(); //Calls the UI.YesNoAnswer to Confirm if the player would like to proceed in the game
+            if (confirmation != "Y") 
             {
-                Console.Write("Sorry to hear that! See you next time.");
                 Environment.Exit(0); //Exits the console, forcing the game to end 
             }
             Console.Clear();//Clear the console, so the player won't see the banck of words
