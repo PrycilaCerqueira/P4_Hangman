@@ -29,7 +29,7 @@ namespace P4_Hangman
             {
                 Console.WriteLine($"Create your own bank of words. Add {totalNumWords} word.");
             }
-            Console.Write($"Enter word number {wordCount + 1}: ");
+            Console.Write($"Word number {wordCount + 1}: ");
             string newWord = Console.ReadLine().ToUpper().Trim();
             return newWord;
         }
@@ -47,11 +47,32 @@ namespace P4_Hangman
             }
         }
 
+        /// <summary>
+        /// It asks the player a Yes/No confirmation
+        /// </summary>
+        /// <returns>Returns a string (answer) </returns>
         public static string YesNoAnswer()
         {
             Console.Write("\n Would you like to continue the game? Y for yes:   ");
             string answer = Console.ReadLine().ToUpper().Trim();
             return answer;
+        }
+
+        /// <summary>
+        /// It asks for a letter input (string)
+        /// </summary>
+        /// <param name="totalNumLetters">Add a total number of guesses</param>
+        /// <param name="letterCount">Initiate the guesses count. Recommended to start with zero</param>
+        /// <returns>Returns the letter (string) </returns>
+        public static string AskForNewLetter(int totalNumLetters, int letterCount)
+        {
+            if (letterCount == 0)
+            {
+                Console.WriteLine($"You have {totalNumLetters} guesses.");
+            }
+            Console.Write($"Guess number {letterCount + 1}: ");
+            string newLetter = Console.ReadLine().ToUpper().Trim();
+            return newLetter;
         }
 
     }

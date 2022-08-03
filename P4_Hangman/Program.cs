@@ -67,8 +67,7 @@ namespace P4_Hangman // Note: actual namespace depends on the project name.
 
             while (letterCount < maxTries)
             {
-                Console.Write($"\n{letterCount + 1}) Guess a letter: ");
-                guessedLetter = Console.ReadLine().ToLower().Trim();
+                guessedLetter = UI.AskForNewLetter(maxTries, letterCount);
 
                 //TODO: Check for multiple letters and numbers.
 
