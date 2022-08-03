@@ -6,7 +6,7 @@ namespace P4_Hangman // Note: actual namespace depends on the project name.
     {
         static void Main(string[] args)
         {
-            Console.Write("** Hangman Game **\n\n");
+            UI.GameHeadline(); //Calls the UI.GameHeadline to display the game name on the console
 
             //BLOCK 1 - List of words creation
             string word = "";
