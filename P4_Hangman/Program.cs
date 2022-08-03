@@ -16,8 +16,7 @@ namespace P4_Hangman // Note: actual namespace depends on the project name.
             
             while (bankOfWords.Count < numOfWords)
             {
-                Console.Write(@$"{bankOfWords.Count + 1})");
-                word = UI.AskForNewWord(numOfWords);
+                word = UI.AskForNewWord(numOfWords, bankOfWords.Count);
 
                 if (String.IsNullOrWhiteSpace(word)) //Verifies if the word is empty, null, or spaces
                 {

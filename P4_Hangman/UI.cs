@@ -14,15 +14,15 @@ namespace P4_Hangman
             Console.WriteLine("\t\t***** Hangman Game *****\n\n");
         }
 
-        public static string AskForNewWord (int maxWordCount)
+        public static string AskForNewWord(int totalNumWords, int wordCount)
         {
-            Console.WriteLine($"Create your own bank of words.");
-            for (int wordCount = 0; wordCount < maxWordCount; wordCount++)
+            if (wordCount == 0)
             {
-                Console.Write($"Enter {wordCount} words: ");
-                string newWord = Console.ReadLine().ToUpper().Trim();
-                return newWord;
+                Console.WriteLine($"Create your own bank of words. Add {totalNumWords} word.");
             }
+            Console.Write($"Enter {wordCount + 1} word: ");
+            string newWord = Console.ReadLine().ToUpper().Trim();
+            return newWord;
         }
 
     }
