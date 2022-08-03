@@ -9,7 +9,7 @@ namespace P4_Hangman
     public static class UI
     {
         /// <summary>
-        /// Print game's name on console 
+        /// It prints game's name on console 
         /// </summary>
         public static void GameHeadline()
         {
@@ -18,7 +18,7 @@ namespace P4_Hangman
         }
         
         /// <summary>
-        /// Asks for a word input <string>
+        /// It asks for a word input <string>
         /// </summary>
         /// <param name="totalNumWords">Add a total number of words</param>
         /// <param name="wordCount">Initiate the word count. Recommended to start with zero.</param>
