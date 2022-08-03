@@ -13,12 +13,11 @@ namespace P4_Hangman // Note: actual namespace depends on the project name.
             int numOfWords = 3;
 
             List<string> bankOfWords = new List<string>(); //Creates and initializes the list named bankOfWords
-            Console.Write($"Create your own back of words. Enter {numOfWords} words:\n");
-
+            
             while (bankOfWords.Count < numOfWords)
             {
                 Console.Write(@$"{bankOfWords.Count + 1})");
-                word = Console.ReadLine().ToLower().Trim();
+                word = UI.AskForNewWord(numOfWords);
 
                 if (String.IsNullOrWhiteSpace(word)) //Verifies if the word is empty, null, or spaces
                 {
