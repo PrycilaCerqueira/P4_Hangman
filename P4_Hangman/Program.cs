@@ -10,7 +10,7 @@ namespace P4_Hangman // Note: actual namespace depends on the project name.
 
             //BLOCK 1 - List of words creation
             string word = "";
-            int numOfWords = 10;
+            int numOfWords = 3;
 
             List<string> bankOfWords = new List<string>(); //Creates and initializes the list named bankOfWords
             
@@ -33,17 +33,10 @@ namespace P4_Hangman // Note: actual namespace depends on the project name.
                 bankOfWords.Add(word.ToLower()); //Adds a lower case converted word to the list
             }
 
-            Console.WriteLine("\nHere are your saved words:");
-            foreach (string item in bankOfWords) //Print the bankOfWords items for the player
-            {
-                Console.WriteLine(item);
-            }
+            UI.ShowBankOfWords(bankOfWords); //Calls the UI.ShowBankOfWords to print words to the console 
 
-            string confirmation = "";
-            Console.Write("\nAre you happy with your list? Enter Y to continue:  ");
-            confirmation = Console.ReadLine().ToLower().Trim();
-
-            if (confirmation != "y") //Confirms if the player would like to proceed in the game
+            string confirmation = UI.YesNoAnswer();
+            if (confirmation != "Y") //Confirms if the player would like to proceed in the game
             {
                 Console.Write("Sorry to hear that! See you next time.");
                 Environment.Exit(0); //Exits the console, forcing the game to end 
