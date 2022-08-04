@@ -9,14 +9,15 @@ namespace P4_Hangman // Note: actual namespace depends on the project name.
             UI.GameHeadline(); //Calls the UI.GameHeadline to display the game name on the console
 
             //BLOCK 1 - List of words creation
-            string word = "";
             int numOfWords = 3;
-
+            string word = "";
+            string question = $"Create your own bank of words. Add {numOfWords} word.";
+            
             List<string> bankOfWords = new List<string>(); //Creates and initializes the list named bankOfWords
             
             while (bankOfWords.Count < numOfWords)
             {
-                word = UI.AskForNewWord(numOfWords, bankOfWords.Count); //Calls the UI.AskForNewWord for the player to create their bank of words
+                word = UI.AskForNewInput(question, bankOfWords.Count); //Calls the UI.AskForNewWord for the player to create their bank of words
 
                 if (String.IsNullOrWhiteSpace(word)) //Verifies if the word is empty, null, or spaces
                 {
@@ -30,7 +31,7 @@ namespace P4_Hangman // Note: actual namespace depends on the project name.
                     continue;
                 }
 
-                bankOfWords.Add(word.ToLower()); //Adds a lower case converted word to the list
+                bankOfWords.Add(word.ToUpper()); //Adds a lower case converted word to the list
             }
 
             UI.ShowBankOfWords(bankOfWords); //Calls the UI.ShowBankOfWords to print words to the console 
@@ -60,14 +61,14 @@ namespace P4_Hangman // Note: actual namespace depends on the project name.
                 displayWordChars[i] = '*';
             }
             displayWord = new string(displayWordChars); //Converts the hidden word from the Character Array to a String in order to display on the console
-            Console.WriteLine($"\nYou have {pickedWord.Length} guesses to find out the secret word.\nWord: {displayWord}");
-
+            
             int maxTries = displayWord.Length;
             int letterCount = 0;
+            question = $"\nYou have {pickedWord.Length} guesses to find out the secret word.\nWord: {displayWord}";
 
             while (letterCount < maxTries)
             {
-                guessedLetter = UI.AskForNewLetter(maxTries, letterCount);
+                guessedLetter = UI.AskForNewInput(question, letterCount);
 
                 //TODO: Check for multiple letters and numbers.
 
@@ -98,13 +99,13 @@ namespace P4_Hangman // Note: actual namespace depends on the project name.
                 
                 listOfRepeatedLetters.Add(guessedLetter);//Adds the guessed letter to the guessed letters list
                 displayWord = new string(displayWordChars);
-                Console.WriteLine($"Updated word: {displayWord}"); // Shows the updated secret word to the players
+                Console.WriteLine($"Updated word: {displayWord}\n"); // Shows the updated secret word to the players
                 letterCount++;
 
                 if (!displayWord.Contains("*"))
                 {
                     Console.Clear();
-                    Console.WriteLine($"\nYou win!\nThe word was {pickedWord.ToUpper()}");
+                    Console.WriteLine($"\nYou win!\nThe word was {pickedWord}");
                     break;
                 }
             }  //end while (letterCount < maxTries)
@@ -112,7 +113,7 @@ namespace P4_Hangman // Note: actual namespace depends on the project name.
             if (displayWord.Contains("*"))
             {
                 Console.Clear();
-                Console.WriteLine($"\nYou lose!\nThe word was {pickedWord.ToUpper()}");
+                Console.WriteLine($"\nYou lose!\nThe word was {pickedWord}");
                 
                 displayWord = new string(displayWordChars);
                 Console.WriteLine($"You guessed up to this point: {displayWord}");

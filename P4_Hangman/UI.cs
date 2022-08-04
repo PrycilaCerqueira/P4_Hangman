@@ -18,20 +18,20 @@ namespace P4_Hangman
         }
         
         /// <summary>
-        /// It asks for a word input (string)
+        /// It asks for a string input
         /// </summary>
-        /// <param name="totalNumWords">Add a total number of words</param>
-        /// <param name="wordCount">Initiate the word count. Recommended to start with zero.</param>
-        /// <returns>Returns the word (string) </returns>
-        public static string AskForNewWord(int totalNumWords, int wordCount)
+        /// <param name="question">Add a question (string)</param>
+        /// <param name="sCount">Initiate the word count (integer)</param>
+        /// <returns>Returns the new input (string) </returns>
+        public static string AskForNewInput(string question, int sCount)
         {
-            if (wordCount == 0)
+            if (sCount == 0)
             {
-                Console.WriteLine($"Create your own bank of words. Add {totalNumWords} word.");
+                Console.WriteLine(question);
             }
-            Console.Write($"Word number {wordCount + 1}: ");
-            string newWord = Console.ReadLine().ToUpper().Trim();
-            return newWord;
+            Console.Write($"{sCount + 1}- ");
+            string newInput = Console.ReadLine().ToUpper().Trim();
+            return newInput;
         }
 
         /// <summary>
@@ -58,22 +58,9 @@ namespace P4_Hangman
             return answer;
         }
 
-        /// <summary>
-        /// It asks for a letter input (string)
-        /// </summary>
-        /// <param name="totalNumLetters">Add a total number of guesses</param>
-        /// <param name="letterCount">Initiate the guesses count. Recommended to start with zero</param>
-        /// <returns>Returns the letter (string) </returns>
-        public static string AskForNewLetter(int totalNumLetters, int letterCount)
-        {
-            if (letterCount == 0)
-            {
-                Console.WriteLine($"You have {totalNumLetters} guesses.");
-            }
-            Console.Write($"Guess number {letterCount + 1}: ");
-            string newLetter = Console.ReadLine().ToUpper().Trim();
-            return newLetter;
-        }
+        
+      
+      
 
     }
 }
