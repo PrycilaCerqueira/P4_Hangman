@@ -17,7 +17,7 @@ namespace P4_Hangman // Note: actual namespace depends on the project name.
             
             while (bankOfWords.Count < numOfWords)
             {
-                word = UI.AskForNewInput(question, bankOfWords.Count); //Calls the UI.AskForNewWord for the player to create their bank of words
+                word = UI.AskForNewInput(question, bankOfWords.Count); //Calls the UI.AskForNewInput for the player to create their bank of words
 
                 if (String.IsNullOrWhiteSpace(word)) //Verifies if the word is empty, null, or spaces
                 {
@@ -64,11 +64,11 @@ namespace P4_Hangman // Note: actual namespace depends on the project name.
             
             int maxTries = displayWord.Length;
             int letterCount = 0;
-            question = $"\nYou have {pickedWord.Length} guesses to find out the secret word.\nWord: {displayWord}";
+            question = $"\nYou have {pickedWord.Length} guesses to find out the secret word.\nWord: {displayWord}.\n\nWhat are your guesses? ";
 
             while (letterCount < maxTries)
             {
-                guessedLetter = UI.AskForNewInput(question, letterCount);
+                guessedLetter = UI.AskForNewInput(question, letterCount); //Calls the UI.AskForNewInput for the player to guess their letters
 
                 //TODO: Check for multiple letters and numbers.
 
