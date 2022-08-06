@@ -51,11 +51,20 @@ namespace P4_Hangman
         /// It asks the player a Yes/No confirmation
         /// </summary>
         /// <returns>Returns a string (answer) </returns>
-        public static string YesNoAnswer()
+        public static bool YesNoAnswer()
         {
-            Console.Write("\n Would you like to continue the game? Y for yes:   ");
+            Console.Write("\n Would you like to continue the game? Enter Y for yes:   ");
             string answer = Console.ReadLine().ToUpper().Trim();
-            return answer;
+
+            if (answer == "Y")
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+                      
         }
 
         
