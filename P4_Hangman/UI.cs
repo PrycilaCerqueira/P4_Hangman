@@ -69,6 +69,11 @@ namespace P4_Hangman
                       
         }
 
+        public static void PrintTooManyChars()
+        {
+            Console.WriteLine("You can only guess one letter at a time. Try again!\n");
+        }
+
         /// <summary>
         /// It prints an invalid entry message on the console
         /// </summary>
