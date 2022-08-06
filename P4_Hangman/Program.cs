@@ -40,8 +40,7 @@ namespace P4_Hangman // Note: actual namespace depends on the project name.
             if (confirmation == false) 
             {
                 Environment.Exit(0); //Exits the console, forcing the game to end 
-            }
-            Console.Clear();//Clear the console, so the player won't see the banck of words
+            }            
 
 
             //BLOCK 2 - Pick a random word from the list

@@ -53,15 +53,17 @@ namespace P4_Hangman
         /// <returns>Returns a string (answer) </returns>
         public static bool YesNoAnswer()
         {
-            Console.Write("\n Would you like to continue the game? Enter Y for yes:   ");
+            Console.Write("\nWould you like to continue the game? Enter Y for yes:   ");
             string answer = Console.ReadLine().ToUpper().Trim();
 
             if (answer == "Y")
             {
+                Console.Clear();//Clear the console, so the player won't see the banck of words
                 return true;
             }
             else
             {
+                Console.WriteLine("See you next time!");
                 return false;
             }
                       
