@@ -95,7 +95,11 @@ namespace P4_Hangman
             Console.WriteLine($"The letter -{sNotContain.ToUpper()}- is not in the secret word.");
         }
       
-
+        /// <summary>
+        /// It informs the players whether they Win or Lose the game 
+        /// </summary>
+        /// <param name="wordStatus">Updated version of the displayWord</param>
+        /// <param name="realWord">Show the picked word by the system</param>
         public static void WinLoseGame(string wordStatus, string realWord)
         {
             if (!wordStatus.Contains("*"))
