@@ -21,13 +21,13 @@ namespace P4_Hangman // Note: actual namespace depends on the project name.
 
                 if (String.IsNullOrWhiteSpace(word)) //Verifies if the word is empty, null, or spaces
                 {
-                    Console.WriteLine("Null and spaces are invalidy entries. Try again!");
+                    UI.PrintInvalidMsg();
                     continue;
                 }
 
                 if (bankOfWords.Contains(word)) //Verifies if the word is repeated
                 {
-                    Console.WriteLine("This word already exist in your list. Try again!");
+                    UI.PrintRepeatedMsg(word);
                     continue;
                 }
 
@@ -73,19 +73,19 @@ namespace P4_Hangman // Note: actual namespace depends on the project name.
 
                 if (string.IsNullOrEmpty(guessedLetter))
                 {
-                    Console.WriteLine("Null and spaces are invalidy entries. Try again!");
+                    UI.PrintInvalidMsg();
                     continue;
                 }
 
                 if (listOfRepeatedLetters.Contains(guessedLetter))
                 {
-                    Console.WriteLine($"You already guessed the letter {guessedLetter.ToUpper()}. Try again!");
+                    UI.PrintRepeatedMsg(guessedLetter);
                     continue;
                 }
                 
                 if (!pickedWord.Contains(guessedLetter))//Displays a message if the letter is NOT part of the secret word
                 {
-                    Console.WriteLine($"The letter {guessedLetter.ToUpper()} is not in the secret word.");
+                    UI.PrintNotContainMsg(guessedLetter);
                 }
 
                 for (int letterIndex = 0; letterIndex < displayWord.Length; letterIndex++) //Verifies if the guesses are correct and slowly reveals the hidden word to the players
@@ -97,8 +97,10 @@ namespace P4_Hangman // Note: actual namespace depends on the project name.
                 }
                 
                 listOfRepeatedLetters.Add(guessedLetter);//Adds the guessed letter to the guessed letters list
+                
                 displayWord = new string(displayWordChars);
                 Console.WriteLine($"Updated word: {displayWord}\n"); // Shows the updated secret word to the players
+                
                 letterCount++;
 
                 if (!displayWord.Contains("*"))

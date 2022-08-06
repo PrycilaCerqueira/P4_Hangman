@@ -53,12 +53,12 @@ namespace P4_Hangman
         /// <returns>Returns a string (answer) </returns>
         public static bool YesNoAnswer()
         {
-            Console.Write("\nWould you like to continue the game? Enter Y for yes:   ");
+            Console.Write("\nWould you like to continue the game? Enter Y for yes: ");
             string answer = Console.ReadLine().ToUpper().Trim();
 
             if (answer == "Y")
             {
-                Console.Clear();//Clear the console, so the player won't see the banck of words
+                Console.Clear();//Clear the console, so the player won't see the bank of words
                 return true;
             }
             else
@@ -69,7 +69,20 @@ namespace P4_Hangman
                       
         }
 
-        
+        public static void PrintInvalidMsg()
+        {
+            Console.WriteLine("Null and spaces are invalidy entries. Try again!\n");
+        }
+
+        public static void PrintRepeatedMsg(string sRepeated)
+        {
+            Console.WriteLine($"You already guessed -{sRepeated.ToUpper()}-. Try again!\n");
+        }
+
+        public static void PrintNotContainMsg(string sNotContain)
+        {
+            Console.WriteLine($"The letter {sNotContain.ToUpper()} is not in the secret word.");
+        }
       
       
 
