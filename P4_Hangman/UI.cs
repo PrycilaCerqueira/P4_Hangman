@@ -76,12 +76,12 @@ namespace P4_Hangman
 
         public static void PrintRepeatedMsg(string sRepeated)
         {
-            Console.WriteLine($"You already guessed -{sRepeated.ToUpper()}-. Try again!\n");
+            Console.WriteLine($"-{sRepeated.ToUpper()}- is a repeated entry. Try again!\n");
         }
 
         public static void PrintNotContainMsg(string sNotContain)
         {
-            Console.WriteLine($"The letter {sNotContain.ToUpper()} is not in the secret word.");
+            Console.WriteLine($"The letter -{sNotContain.ToUpper()}- is not in the secret word.");
         }
       
       
