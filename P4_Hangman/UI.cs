@@ -95,7 +95,31 @@ namespace P4_Hangman
             Console.WriteLine($"The letter -{sNotContain.ToUpper()}- is not in the secret word.");
         }
       
-      
 
+        public static void WinLoseGame(string wordStatus, string realWord)
+        {
+            if (!wordStatus.Contains("*"))
+            {
+                Console.Clear();
+                Console.WriteLine($"***** You win! *****");
+                Console.WriteLine($"The word was {realWord}.");
+
+
+            }
+            else
+            {
+                Console.Clear();
+                Console.WriteLine($"***** You lose! *****");
+                Console.WriteLine($"The word was {realWord}, and you guessed up to this point: {wordStatus}.\n");
+            }
+            
+            Console.Write("Press <Enter> to exit... ");
+            while (Console.ReadKey().Key != ConsoleKey.Enter)
+            {
+                //empty
+            }
+        }
+      
     }
 }
+

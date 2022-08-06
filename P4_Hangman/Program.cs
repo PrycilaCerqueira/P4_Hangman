@@ -61,9 +61,9 @@ namespace P4_Hangman // Note: actual namespace depends on the project name.
             }
             displayWord = new string(displayWordChars); //Converts the hidden word from the Character Array to a String in order to display on the console
             
-            int maxTries = displayWord.Length;
+            int maxTries = displayWord.Length + 3;
             int letterCount = 0;
-            question = $"\nYou have {pickedWord.Length} guesses to find out the secret word.\nWord: {displayWord}.\n\nWhat are your guesses? ";
+            question = $"\nYou have {maxTries} guesses to find out the secret word.\nWord: {displayWord}.\n\nWhat are your guesses? ";
 
             while (letterCount < maxTries)
             {
@@ -103,30 +103,16 @@ namespace P4_Hangman // Note: actual namespace depends on the project name.
                 
                 letterCount++;
 
-                if (!displayWord.Contains("*"))
+                if (!displayWord.Contains("*")) //Win check
                 {
-                    Console.Clear();
-                    Console.WriteLine($"\nYou win!\nThe word was {pickedWord}");
+                    UI.WinLoseGame(displayWord, pickedWord);
                     break;
                 }
             }  //end while (letterCount < maxTries)
 
-            if (displayWord.Contains("*"))
-            {
-                Console.Clear();
-                Console.WriteLine($"\nYou lose!\nThe word was {pickedWord}");
-                
-                displayWord = new string(displayWordChars);
-                Console.WriteLine($"You guessed up to this point: {displayWord}");
-            }
-
-            Console.Write("Press <Enter> to exit... ");
-            while (Console.ReadKey().Key != ConsoleKey.Enter) 
-            { 
-            }
-           
-
+            UI.WinLoseGame(displayWord, pickedWord); //Lose check
 
         }
+
     }
 }
