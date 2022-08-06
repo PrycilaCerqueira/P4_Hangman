@@ -107,8 +107,6 @@ namespace P4_Hangman
                 Console.Clear();
                 Console.WriteLine($"***** You win! *****");
                 Console.WriteLine($"The word was {realWord}.");
-
-
             }
             else
             {

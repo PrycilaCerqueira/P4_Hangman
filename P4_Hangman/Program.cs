@@ -105,12 +105,12 @@ namespace P4_Hangman // Note: actual namespace depends on the project name.
 
                 if (!displayWord.Contains("*")) //Win check
                 {
-                    UI.WinLoseGame(displayWord, pickedWord);
+                    UI.WinLoseGame(displayWord, pickedWord); //Call the UI.WinLoseGame method to display the status of the game to the players (WIN)
                     break;
                 }
             }  //end while (letterCount < maxTries)
 
-            UI.WinLoseGame(displayWord, pickedWord); //Lose check
+            UI.WinLoseGame(displayWord, pickedWord); //Call the UI.WinLoseGame method to display the status of the game to the players (LOSE)
 
         }
 
