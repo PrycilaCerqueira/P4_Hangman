@@ -97,10 +97,8 @@ namespace P4_Hangman // Note: actual namespace depends on the project name.
                 }
                 
                 listOfRepeatedLetters.Add(guessedLetter);//Adds the guessed letter to the guessed letters list
-                
                 displayWord = new string(displayWordChars);
-                Console.WriteLine($"Updated word: {displayWord}\n"); // Shows the updated secret word to the players
-                
+                UI.PrintWordStatus(displayWord);// Call UI.PrintWordStatus method to show the updated secret word to the players
                 letterCount++;
 
                 if (!displayWord.Contains("*")) //Win check

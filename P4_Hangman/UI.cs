@@ -87,12 +87,21 @@ namespace P4_Hangman
         }
 
         /// <summary>
-        /// It prints a not contain message on the console
+        /// It prints a not contain entry message on the console
         /// </summary>
         /// <param name="sNotContain">Not contain string entry</param>
         public static void PrintNotContainMsg(string sNotContain)
         {
             Console.WriteLine($"The letter -{sNotContain.ToUpper()}- is not in the secret word.");
+        }
+
+        /// <summary>
+        /// Print the word guessing progress to the players on the console
+        /// </summary>
+        /// <param name="wordStatus">Updated version of the displayWord</param>
+        public static void PrintWordStatus(string wordStatus)
+        {
+            Console.WriteLine($"Updated word: {wordStatus}\n");
         }
       
         /// <summary>
@@ -106,7 +115,7 @@ namespace P4_Hangman
             {
                 Console.Clear();
                 Console.WriteLine($"***** You win! *****");
-                Console.WriteLine($"The word was {realWord}.");
+                Console.WriteLine($"The word was {realWord}.\n");
             }
             else
             {
