@@ -69,16 +69,27 @@ namespace P4_Hangman
                       
         }
 
+        /// <summary>
+        /// It prints an invalid entry message on the console
+        /// </summary>
         public static void PrintInvalidMsg()
         {
             Console.WriteLine("Null and spaces are invalidy entries. Try again!\n");
         }
 
+        /// <summary>
+        /// It prints a repeated entry message on the console
+        /// </summary>
+        /// <param name="sRepeated">Repeated string entry </param>
         public static void PrintRepeatedMsg(string sRepeated)
         {
             Console.WriteLine($"-{sRepeated.ToUpper()}- is a repeated entry. Try again!\n");
         }
 
+        /// <summary>
+        /// It prints a not contain message on the console
+        /// </summary>
+        /// <param name="sNotContain">Not contain string entry</param>
         public static void PrintNotContainMsg(string sNotContain)
         {
             Console.WriteLine($"The letter -{sNotContain.ToUpper()}- is not in the secret word.");
