@@ -68,13 +68,20 @@ namespace P4_Hangman // Note: actual namespace depends on the project name.
             while (letterCount < maxTries)
             {
                 guessedLetter = UI.AskForNewInput(question, letterCount); //Calls the UI.AskForNewInput for the player to guess their letters
-
+                
                 //TODO: Check for multiple letters and numbers
-                if (guessedLetter.Length > 1)
+                /*if (guessedLetter.Length > 1)
                 {
-                    UI.PrintTooManyChars();
+                    UI.PrintTooManyCharsMsg();
                     continue;
-                }    
+                }
+                */
+                var ch = Convert.ToChar(guessedLetter);
+                if (!Char.IsLetter(ch))
+                {
+                    UI.PrintNotAlphaMsg();
+                    continue;
+                }
 
                 if (string.IsNullOrEmpty(guessedLetter))
                 {

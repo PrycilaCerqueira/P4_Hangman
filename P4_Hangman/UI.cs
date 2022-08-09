@@ -69,7 +69,11 @@ namespace P4_Hangman
                       
         }
 
-        public static void PrintTooManyChars()
+        public static void PrintTooManyCharsMsg()
+        {
+            Console.WriteLine("You can only guess one letter at a time. Try again!\n");
+        }
+        public static void PrintNotAlphaMsg()
         {
             Console.WriteLine("You can only guess one letter at a time. Try again!\n");
         }
@@ -79,7 +83,7 @@ namespace P4_Hangman
         /// </summary>
         public static void PrintInvalidMsg()
         {
-            Console.WriteLine("Null and spaces are invalidy entries. Try again!\n");
+            Console.WriteLine("Entry only accepts an alphabetic character [A-Z]. Try again!\n");
         }
 
         /// <summary>
