@@ -69,11 +69,7 @@ namespace P4_Hangman
                       
         }
 
-        public static void PrintTooManyCharsMsg()
-        {
-            Console.WriteLine("You can only guess one letter at a time. Try again!\n");
-        }
-        public static void PrintNotAlphaMsg()
+        public static void PrintTooManyChars()
         {
             Console.WriteLine("You can only guess one letter at a time. Try again!\n");
         }
