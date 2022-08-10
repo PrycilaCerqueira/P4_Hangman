@@ -66,10 +66,12 @@ namespace P4_Hangman
                 Console.WriteLine("See you next time!");
                 return false;
             }
-                      
         }
 
-        public static void PrintTooManyChars()
+        /// <summary>
+        /// It prints an invalid entry message on the console
+        /// </summary>
+        public static void PrintTooManyCharsMsg()
         {
             Console.WriteLine("You can only guess one letter at a time. Try again!\n");
         }

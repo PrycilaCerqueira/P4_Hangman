@@ -30,7 +30,7 @@ namespace P4_Hangman // Note: actual namespace depends on the project name.
                     UI.PrintRepeatedMsg(word);
                     continue;
                 }
-
+                
                 bankOfWords.Add(word.ToUpper()); //Adds a lower case converted word to the list
             }
 
@@ -69,12 +69,18 @@ namespace P4_Hangman // Note: actual namespace depends on the project name.
             {
                 guessedLetter = UI.AskForNewInput(question, letterCount); //Calls the UI.AskForNewInput for the player to guess their letters
 
-                //TODO: Check for multiple letters and numbers
                 if (guessedLetter.Length > 1)
                 {
-                    UI.PrintTooManyChars();
+                    UI.PrintTooManyCharsMsg();
                     continue;
-                }    
+                }
+
+                char glChar = guessedLetter[0];
+                if (!Char.IsLetter(glChar))
+                {
+                    UI.PrintInvalidMsg();
+                    continue;
+                }
 
                 if (string.IsNullOrEmpty(guessedLetter))
                 {
